@@ -1,12 +1,14 @@
 
-import artigos from "../../../public/data/artigos.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import artigos from "../../../public/data/artigos.json";
 
 type Artigo = {
   slug: string;
   titulo: string;
   descricao: string;
+  autor: string;
+  dataPublicacao: string;
   conteudo: string;
 };
 
@@ -15,17 +17,20 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  return artigos.map((artigo: Artigo) => ({
+  return artigos.map((artigo) => ({
     slug: artigo.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const artigo = artigos.find((item: Artigo) => item.slug === slug);
+  const artigo = artigos.find((item) => item.slug === slug);
 
   if (!artigo) {
-    return { title: "Artigo não encontrado" };
+    return {
+      title: "Artigo não encontrado",
+      description: "O artigo solicitado não foi encontrado.",
+    };
   }
 
   return {
@@ -36,30 +41,37 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function PaginaArtigo({ params }: Props) {
   const { slug } = await params;
-  const artigo = artigos.find((item: Artigo) => item.slug === slug);
+  const artigo = artigos.find((item) => item.slug === slug);
 
   if (!artigo) {
     notFound();
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 px-6 py-12">
-      <article className="mx-auto max-w-3xl rounded-xl bg-white p-8 shadow">
-        <Link href="/" className="text-blue-600 hover:underline">
-          ← Voltar para o início
-        </Link>
+    <main className="mx-auto max-w-3xl p-8">
+      <Link href="/" className="text-blue-600 hover:underline">
+        ← Voltar para o início
+      </Link>
 
-        <h1 className="mt-8 text-3xl font-bold text-gray-900">
+      <article className="mt-8">
+        <h1 className="mb-4 text-3xl font-bold">
           {artigo.titulo}
         </h1>
 
-        <p className="mt-4 text-gray-600">
+        <p className="mb-2 text-gray-600">
           {artigo.descricao}
         </p>
 
-        <p className="mt-6 leading-8 text-gray-800">
-          {artigo.conteudo}
+        <p className="mb-6 text-sm text-gray-500">
+          Por {artigo.autor} · Publicado em{" "}
+          {new Date(
+            artigo.dataPublicacao + "T12:00:00"
+          ).toLocaleDateString("pt-BR")}
         </p>
+
+        <div className="text-lg leading-8">
+          {artigo.conteudo}
+        </div>
       </article>
     </main>
   );

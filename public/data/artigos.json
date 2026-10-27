@@ -4,18 +4,24 @@
     "slug": "typescript-para-iniciantes",
     "titulo": "TypeScript para Iniciantes",
     "descricao": "Aprenda os fundamentos do TypeScript.",
+    "autor": "Roberta Giovanelli",
+    "dataPublicacao": "2026-10-27",
     "conteudo": "O TypeScript adiciona tipagem estática ao JavaScript, ajudando a identificar erros durante o desenvolvimento."
   },
   {
     "slug": "introducao-ao-nextjs",
     "titulo": "Introdução ao Next.js",
     "descricao": "Conheça o framework Next.js.",
+    "autor": "Roberta Giovanelli",
+    "dataPublicacao": "2026-10-27",
     "conteudo": "O Next.js é um framework baseado em React que facilita a criação de aplicações web modernas."
   },
   {
     "slug": "inteligencia-artificial",
     "titulo": "Inteligência Artificial no Desenvolvimento Web",
     "descricao": "Descubra como a IA pode auxiliar desenvolvedores.",
+    "autor": "Roberta Giovanelli",
+    "dataPublicacao": "2026-10-27",
     "conteudo": "A inteligência artificial pode ajudar a compreender códigos, encontrar erros e automatizar tarefas."
   }
 ]
