@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Otimização de Desempenho Web — Blog Next.js
 
-## Getting Started
+## Sobre o projeto
 
-First, run the development server:
+Este projeto consiste em um blog sobre tecnologia, desenvolvido com Next.js, TypeScript e Tailwind CSS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O objetivo deste exercício foi analisar o desempenho da aplicação, identificar oportunidades de melhoria e realizar ajustes técnicos, utilizando o Lighthouse para avaliar os resultados antes e depois das alterações.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS 4
+- ESLint
+- Lighthouse
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Diagnóstico inicial
 
-## Learn More
+Foi realizada uma análise da aplicação em ambiente de produção utilizando o Lighthouse.
 
-To learn more about Next.js, take a look at the following resources:
+Foram observados:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Arquivos CSS pequenos.
+- Dados dos artigos em arquivo JSON com aproximadamente 1 KB.
+- Ausência de imagens pesadas no conteúdo.
+- Páginas pré-renderizadas pelo Next.js.
+- Estrutura simples e eficiente de componentes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Melhorias realizadas
 
-## Deploy on Vercel
+### 1. Acessibilidade
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Correção do idioma principal da página de `en` para `pt-BR`, permitindo a identificação correta do idioma português.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. SEO
+
+- Atualização do título da aplicação.
+- Substituição da descrição padrão do Next.js por uma descrição relacionada ao conteúdo do blog.
+
+### 3. Preservação do desempenho
+
+- Manutenção da renderização estática das páginas.
+- Preservação do componente de navegação `Link` do Next.js.
+- Manutenção da estrutura de componentes e dos estilos existentes.
+
+## Resultados do Lighthouse
+
+As medições realizadas antes e depois das alterações apresentaram as seguintes pontuações:
+
+| Categoria | Antes | Depois |
+|---|---:|---:|
+| Performance | 100 | 100 |
+| Acessibilidade | 100 | 100 |
+| Boas práticas | 100 | 100 |
+| SEO | 100 | 100 |
+
+O resultado demonstra que as melhorias implementadas foram realizadas sem prejudicar o desempenho da aplicação.
+
+## Relatórios Lighthouse
+
+Os relatórios utilizados na avaliação estão disponíveis na raiz do repositório:
+
+- `lighthouse-antes.html`
+- `lighthouse-antes-producao.html`
+- `lighthouse-depois.html`
+
+## Conclusão
+
+A análise demonstrou que o projeto já apresentava uma estrutura leve e eficiente. As alterações realizadas aprimoraram a identificação do idioma e os metadados da aplicação, mantendo as pontuações máximas nas quatro categorias avaliadas pelo Lighthouse.
+
+O exercício permitiu praticar análise de desempenho, acessibilidade, SEO, compilação de produção e documentação técnica.
+
+---
+
+Desenvolvido por **Roberta Giovanelli**.
