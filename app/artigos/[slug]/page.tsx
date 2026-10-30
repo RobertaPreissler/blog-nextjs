@@ -3,15 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import artigos from "../../../public/data/artigos.json";
 
-type Artigo = {
-  slug: string;
-  titulo: string;
-  descricao: string;
-  autor: string;
-  dataPublicacao: string;
-  conteudo: string;
-};
-
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -68,6 +59,12 @@ export default async function PaginaArtigo({ params }: Props) {
             artigo.dataPublicacao + "T12:00:00"
           ).toLocaleDateString("pt-BR")}
         </p>
+
+        <img
+          src="/capa-tecnologia.png"
+          alt="Ilustração sobre programação e inteligência artificial"
+          className="mb-8 h-auto w-full rounded-lg"
+        />
 
         <div className="text-lg leading-8">
           {artigo.conteudo}
