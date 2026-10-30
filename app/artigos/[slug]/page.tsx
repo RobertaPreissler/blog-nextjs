@@ -1,4 +1,5 @@
 
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import artigos from "../../../public/data/artigos.json";
@@ -60,9 +61,12 @@ export default async function PaginaArtigo({ params }: Props) {
           ).toLocaleDateString("pt-BR")}
         </p>
 
-        <img
+        <Image
           src="/capa-tecnologia.png"
           alt="Ilustração sobre programação e inteligência artificial"
+          width={1536}
+          height={1024}
+          sizes="(max-width: 768px) 100vw, 768px"
           className="mb-8 h-auto w-full rounded-lg"
         />
 

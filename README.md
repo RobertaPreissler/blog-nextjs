@@ -1,75 +1,108 @@
-# Otimização de Desempenho Web — Blog Next.js
+# Blog Next.js — Desenvolvimento e Otimização de Performance
 
 ## Sobre o projeto
 
-Este projeto consiste em um blog sobre tecnologia, desenvolvido com Next.js, React, TypeScript e Tailwind CSS.
+Este projeto consiste no desenvolvimento de um blog utilizando Next.js, com páginas de artigos dinâmicas, organização de dados em JSON, renderização estática e otimização de desempenho.
 
-O objetivo deste exercício foi analisar o desempenho da aplicação, identificar oportunidades de melhoria e implementar otimizações, utilizando o Lighthouse para avaliar os resultados antes e depois das alterações.
+O objetivo da atividade é aplicar técnicas de otimização de performance e avaliar os resultados por meio da ferramenta Lighthouse, comparando as métricas antes e depois das melhorias.
 
 ## Tecnologias utilizadas
 
 - Next.js 16
 - React
 - TypeScript
-- Tailwind CSS 4
-- ESLint
+- Tailwind CSS
+- HTML
+- JSON
 - Lighthouse
+- Git e GitHub
 
-## Diagnóstico inicial
+## Funcionalidades implementadas
 
-Foi realizada uma análise da aplicação em ambiente de produção utilizando o Lighthouse.
+- Página inicial do blog.
+- Páginas individuais para os artigos.
+- Rotas dinâmicas utilizando App Router.
+- Dados dos artigos organizados em arquivo JSON.
+- Geração de páginas estáticas.
+- Metadados individuais para os artigos.
+- Navegação entre páginas utilizando o componente Link do Next.js.
+- Exibição de imagem de capa otimizada.
 
-Foram observados:
+## Estrutura do projeto
 
-- Arquivos CSS pequenos.
-- Dados dos artigos armazenados em arquivo JSON.
-- Páginas pré-renderizadas pelo Next.js.
-- Estrutura simples de componentes.
-- Oportunidade de otimização do carregamento de imagens.
+```text
+blog-nextjs/
+├── app/
+│   ├── artigos/
+│   │   └── [slug]/
+│   │       └── page.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── public/
+│   ├── data/
+│   │   └── artigos.json
+│   └── capa-tecnologia.png
+├── lighthouse-antes.html
+├── lighthouse-depois.html
+├── package.json
+└── README.md
+```
 
-## Melhorias realizadas
+## Otimização de performance
 
-### 1. Acessibilidade
+Foi realizado um diagnóstico utilizando o Lighthouse para identificar oportunidades de melhoria no carregamento da aplicação.
 
-- Configuração do idioma principal da aplicação para `pt-BR`, permitindo a identificação correta do idioma português.
+### 1. Diagnóstico inicial
 
-### 2. SEO
+Na primeira versão, a imagem de capa era exibida utilizando o elemento HTML `<img>`.
 
-- Atualização do título da aplicação.
-- Substituição da descrição padrão do Next.js por uma descrição relacionada ao conteúdo do blog.
+Essa implementação foi utilizada como referência inicial para avaliar o desempenho da página.
 
-### 3. Otimização de imagens
+**Pontuação inicial de Performance: 74 pontos.**
 
-Foi adicionada uma imagem de capa relacionada à programação e à inteligência artificial nos artigos.
+### 2. Otimização aplicada
 
-Inicialmente, a imagem foi implementada utilizando a tag HTML `<img>`.
+O elemento HTML `<img>` foi substituído pelo componente `Image` do Next.js.
 
-Em seguida, foi realizada a substituição pelo componente `Image` do Next.js (`next/image`), com:
+Foram aplicadas as seguintes melhorias:
 
-- Definição das dimensões da imagem.
-- Configuração da propriedade `sizes`.
-- Redimensionamento responsivo.
-- Utilização dos recursos de otimização de imagens do Next.js.
+- Utilização do componente `Image` de `next/image`.
+- Definição explícita das dimensões da imagem.
+- Configuração da propriedade `sizes` para dimensionamento responsivo.
+- Utilização do otimizador de imagens do Next.js.
+- Preservação da estrutura da página e da renderização estática.
 
-Essa alteração permite que o Next.js otimize a entrega da imagem conforme as necessidades do dispositivo.
+Código utilizado:
 
-### 4. Preservação do desempenho
+```tsx
+<Image
+  src="/capa-tecnologia.png"
+  alt="Ilustração sobre programação e inteligência artificial"
+  width={1536}
+  height={1024}
+  sizes="(max-width: 768px) 100vw, 768px"
+  className="mb-8 h-auto w-full rounded-lg"
+/>
+```
 
-- Manutenção da renderização estática das páginas.
-- Preservação do componente `Link` do Next.js.
-- Manutenção da estrutura de componentes e dos estilos existentes.
+### 3. Comparação dos resultados do Lighthouse
 
-## Resultados do Lighthouse
-
-Foram realizadas medições em ambiente de produção, utilizando o dispositivo Mobile e a categoria Performance.
-
-| Categoria | Medição inicial | Medição posterior |
+| Categoria | Antes | Depois |
 |---|---:|---:|
-| Performance | 72 | 74 |
+| Performance | 74 | 96 |
 | Acessibilidade | 95 | 95 |
-| Boas práticas | 96 | 100 |
+| Práticas recomendadas | 100 | 100 |
 | SEO | 100 | 100 |
 
-A pontuação de Performance apresentou uma diferença de 2 pontos entre as medições.
+A pontuação de Performance aumentou de 74 para 96 pontos, representando uma evolução de 22 pontos.
 
-**Observação:** as medições não foram realizadas exatamente nas mesmas condições: a medição posterior foi repetida em janela InPrivate, sem extensões do navegador
+### 4. Métricas detalhadas após a otimização
+
+| Métrica | Resultado |
+|---|---:|
+| First Contentful Paint (FCP) | 0,8 s |
+| Largest Contentful Paint (LCP) | 2,4 s |
+| Total Blocking Time (TBT) | 140 ms |
+| Cumulative Layout Shift (CLS) | 0 |
+| Speed Index
